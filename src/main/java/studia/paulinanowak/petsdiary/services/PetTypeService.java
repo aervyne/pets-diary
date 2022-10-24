@@ -4,5 +4,6 @@ import studia.paulinanowak.petsdiary.model.PetType;
 
 import java.util.Set;
 
-public interface PetTypeService extends CrudService<PetType, Long> {
+public interface PetTypeService {
+    Set<PetType> findAll();
 }
