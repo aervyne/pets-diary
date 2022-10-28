@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets Diary</title>
+</head>
+<body>
+    <h1>Lista zwierząt</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Imię</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pet:${pets}">
+            <td th:text="${pet?.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
