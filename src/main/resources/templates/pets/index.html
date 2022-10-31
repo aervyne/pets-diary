@@ -7,15 +7,21 @@
 <body>
     <h1>Lista zwierząt</h1>
 
-    <table>
+    <table border="1">
         <thead>
         <tr>
             <td>Imię</td>
+            <td>Data urodzenia</td>
+            <td>Rasa</td>
+            <td>Gatunek</td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="pet:${pets}">
-            <td th:text="${pet?.name}"></td>
+            <td th:text="${pet.name}"></td>
+            <td th:text="${pet.dateOfBirth}"></td>
+            <td th:text="${pet.breed}"></td>
+            <td th:text="${pet.petType}"></td>
         </tr>
         </tbody>
     </table>

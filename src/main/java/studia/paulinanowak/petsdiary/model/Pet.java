@@ -1,11 +1,19 @@
 package studia.paulinanowak.petsdiary.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "pets")
 public class Pet extends BaseEntity {
+    @Column(name = "name")
     private String name;
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
+    @ManyToOne
+    @JoinColumn(name = "pet_type_id")
     private PetType petType;
+    @Column(name = "breed")
     private String breed;
 
     // TODO dodać pozostałe pola zgodnie z diagramem
