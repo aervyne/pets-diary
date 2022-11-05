@@ -11,11 +11,6 @@ import java.time.LocalDate;
 
 @Component
 public class PetToPetCommand implements Converter<Pet, PetCommand> {
-    private final PetTypeToPetTypeCommand petTypeConverter;
-
-    public PetToPetCommand(PetTypeToPetTypeCommand petTypeConverter) {
-        this.petTypeConverter = petTypeConverter;
-    }
 
     @Synchronized
     @Nullable
@@ -27,7 +22,7 @@ public class PetToPetCommand implements Converter<Pet, PetCommand> {
 
         PetCommand petCommand = new PetCommand();
         petCommand.setId(source.getId());
-        //petCommand.setPetType(petTypeConverter.convert(source.getPetType()));
+        petCommand.setPetTypeId(String.valueOf(source.getPetType().getId()));
         petCommand.setBreed(source.getBreed());
         petCommand.setDateOfBirth(String.valueOf(source.getDateOfBirth()));
         petCommand.setName(source.getName());
