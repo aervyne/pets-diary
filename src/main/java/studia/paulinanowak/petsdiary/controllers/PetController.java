@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import studia.paulinanowak.petsdiary.commands.PetCommand;
+import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.services.PetService;
 import studia.paulinanowak.petsdiary.services.PetTypeService;
 
@@ -33,6 +34,16 @@ public class PetController {
     public String newPet(Model model) {
         model.addAttribute("pet", new PetCommand());
         model.addAttribute("petTypes", petTypeService.findAll());
+
+        return "pets/petForm";
+    }
+
+    @RequestMapping("/pet/update/{id}")
+    public String editPet(@PathVariable String id, Model model) {
+        PetCommand pet = petService.findCommandById(Long.valueOf(id));
+
+        model.addAttribute("pet", pet);
+        model.addAttribute("petTypes", petTypeService.findById(Long.valueOf(pet.getPetTypeId())));
 
         return "pets/petForm";
     }

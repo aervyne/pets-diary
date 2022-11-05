@@ -24,7 +24,8 @@
             <td th:text="${pet.dateOfBirth}"></td>
             <td th:text="${pet.breed}"></td>
             <td th:text="${pet.petType.getType()}"></td>
-            <td><a href="#" th:href="@{'/pets/show/' + ${pet.id}}">Zobacz</a></td>
+            <td><a href="#" th:href="@{'/pets/show/' + ${pet.id}}">Zobacz</a>
+                <a href="#" th:href="@{'/pet/update/' + ${pet.id}}">Edytuj</a></td>
         </tr>
         </tbody>
     </table>

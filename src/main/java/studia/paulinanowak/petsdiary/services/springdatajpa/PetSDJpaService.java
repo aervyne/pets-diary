@@ -11,6 +11,7 @@ import studia.paulinanowak.petsdiary.services.PetService;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -35,7 +36,13 @@ public class PetSDJpaService implements PetService {
 
     @Override
     public Pet findById(Long id) {
-        return petRepository.findById(id).orElseThrow(null);
+        Optional<Pet> petOptional = petRepository.findById(id);
+
+        if(!petOptional.isPresent()) {
+            throw new RuntimeException("Pet not found!");
+        }
+
+        return petOptional.get();
     }
 
     @Override
@@ -60,5 +67,11 @@ public class PetSDJpaService implements PetService {
 
         Pet savedPet = petRepository.save(detachedPet);
         return petToPetCommand.convert(savedPet);
+    }
+
+    @Override
+    @Transactional
+    public PetCommand findCommandById(Long id) {
+        return petToPetCommand.convert(findById(id));
     }
 }
