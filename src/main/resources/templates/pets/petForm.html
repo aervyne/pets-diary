@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj</title>
+</head>
+<body>
+    <form th:object="${pet}" th:action="@{/pet/}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" th:field="*{name}" />
+        <input type="date" th:field="*{dateOfBirth}" />
+        <input type="text" th:field="*{breed}" />
+        <select th:field="*{petTypeId}">
+            <th:block th:each="petType : ${petTypes}">
+                <option th:value="${petType.id}" th:text="${petType.type}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

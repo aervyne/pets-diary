@@ -16,8 +16,6 @@ public class Pet extends BaseEntity {
     @Column(name = "breed")
     private String breed;
 
-    // TODO dodać pozostałe pola zgodnie z diagramem
-
 
     public String getName() {
         return name;
