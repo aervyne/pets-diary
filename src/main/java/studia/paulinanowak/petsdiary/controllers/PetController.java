@@ -18,18 +18,21 @@ public class PetController {
         this.petTypeService = petTypeService;
     }
 
+    @GetMapping
     @RequestMapping({"/pets", "/pets/index"})
     public String listPets(Model model) {
         model.addAttribute("pets", petService.findAll());
         return "pets/index";
     }
 
+    @GetMapping
     @RequestMapping("/pets/show/{id}")
     public String showById(@PathVariable String id, Model model) {
         model.addAttribute("pet", petService.findById(Long.valueOf(id)));
         return "pets/show";
     }
 
+    @GetMapping
     @RequestMapping("/pet/new")
     public String newPet(Model model) {
         model.addAttribute("pet", new PetCommand());
@@ -38,6 +41,7 @@ public class PetController {
         return "pets/petForm";
     }
 
+    @GetMapping
     @RequestMapping("/pet/update/{id}")
     public String editPet(@PathVariable String id, Model model) {
         PetCommand pet = petService.findCommandById(Long.valueOf(id));
@@ -49,11 +53,19 @@ public class PetController {
     }
 
     @PostMapping
-    @RequestMapping("pet")
+    @RequestMapping("/pet")
     public String saveOrUpdate(@ModelAttribute PetCommand command) {
         System.out.println(command.getPetTypeId());
         PetCommand savedCommand = petService.savePetCommand(command);
 
         return "redirect:/pets/show/" + savedCommand.getId();
+    }
+
+    @GetMapping
+    @RequestMapping("/pet/delete/{id}")
+    public String deletePet(@PathVariable String id){
+        petService.deleteById(Long.valueOf(id));
+
+        return "redirect:/pets/index";
     }
 }

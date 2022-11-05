@@ -46,16 +46,6 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
-    public Pet save(Pet object) {
-        return petRepository.save(object);
-    }
-
-    @Override
-    public void delete(Pet object) {
-        petRepository.delete(object);
-    }
-
-    @Override
     public void deleteById(Long id) {
         petRepository.deleteById(id);
     }
