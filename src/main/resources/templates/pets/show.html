@@ -24,5 +24,6 @@
             <td th:text="${pet.petType.getType()}"></td>
         </tr>
     </table>
+    <img th:src="@{'/pet/petimage/' + ${pet.id}}">
 </body>
 </html>

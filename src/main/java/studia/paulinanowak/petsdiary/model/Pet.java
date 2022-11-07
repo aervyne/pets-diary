@@ -15,6 +15,9 @@ public class Pet extends BaseEntity {
     private PetType petType;
     @Column(name = "breed")
     private String breed;
+    @Lob
+    @Column(name = "image")
+    private Byte[] image;
 
 
     public String getName() {
@@ -47,5 +50,13 @@ public class Pet extends BaseEntity {
 
     public void setBreed(String breed) {
         this.breed = breed;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 }

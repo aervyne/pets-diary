@@ -16,4 +16,5 @@ public class PetCommand {
     private String dateOfBirth;
     private String breed;
     private String petTypeId;
+    private Byte[] image;
 }
