@@ -10,9 +10,7 @@ import studia.paulinanowak.petsdiary.repositories.PetRepository;
 import studia.paulinanowak.petsdiary.services.PetService;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Profile("springdatajpa")
@@ -43,6 +41,11 @@ public class PetSDJpaService implements PetService {
         }
 
         return petOptional.get();
+    }
+
+    @Override
+    public Collection<Pet> findByName(String name) {
+        return this.findAll().stream().filter(pet -> pet.getName().equalsIgnoreCase(name)).toList();
     }
 
     @Override

@@ -8,6 +8,19 @@
 <body>
     <h1>Lista zwierząt</h1> <br />
 
+    <form th:object="${pet}" th:action="@{/pets/search}" method="get"
+          class="form-horizontal" id="search-owner-form">
+                <label class="col-sm-2 control-label">Nazwa </label>
+                    <input class="form-control" th:field="*{name}" /> <span class="help-inline">
+        <div
+                th:if="${#fields.hasAnyErrors()}">
+              <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+            </div>
+    </span>
+                <button type="submit" class="btn btn-default">Szukaj</button>
+
+    </form>
+
     <table border="1">
         <thead>
         <tr>
@@ -19,14 +32,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="pet:${pets}">
-            <td th:text="${pet.name}"></td>
-            <td th:text="${pet.dateOfBirth}"></td>
-            <td th:text="${pet.breed}"></td>
-            <td th:text="${pet.petType.getType()}"></td>
-            <td><a href="#" th:href="@{'/pets/show/' + ${pet.id}}">Zobacz</a>
-                <a href="#" th:href="@{'/pet/update/' + ${pet.id}}">Edytuj</a>
-                <a href="#" th:href="@{'/pet/delete/' + ${pet.id}}">Usuń</a></td>
+        <tr th:each="petList:${pets}">
+            <td th:text="${petList.name}"></td>
+            <td th:text="${petList.dateOfBirth}"></td>
+            <td th:text="${petList.breed}"></td>
+            <td th:text="${petList.petType.getType()}"></td>
+            <td><a href="#" th:href="@{'/pets/show/' + ${petList.id}}">Zobacz</a>
+                <a href="#" th:href="@{'/pet/update/' + ${petList.id}}">Edytuj</a>
+                <a href="#" th:href="@{'/pet/delete/' + ${petList.id}}">Usuń</a></td>
         </tr>
         </tbody>
     </table>
