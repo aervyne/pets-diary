@@ -7,12 +7,17 @@
 </head>
 <body>
     <h1>Lista zwierząt</h1> <br />
+    <h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" />
+    </form>
 
     <form th:object="${pet}" th:action="@{/pets/search}" method="get"
           class="form-horizontal" id="search-owner-form">
                 <label class="col-sm-2 control-label">Nazwa </label>
                     <input class="form-control" th:field="*{name}" /> <span class="help-inline">
-        <div
+        <div>
                 th:if="${#fields.hasAnyErrors()}">
               <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
             </div>
