@@ -24,6 +24,9 @@ public class Pet extends BaseEntity {
     @Column(name = "image")
     private Byte[] image;
 
+    @Column(name = "username")
+    private String username;
+
 
     public String getName() {
         return name;
@@ -63,5 +66,13 @@ public class Pet extends BaseEntity {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

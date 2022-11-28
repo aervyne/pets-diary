@@ -10,6 +10,7 @@ import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.services.PetService;
 import studia.paulinanowak.petsdiary.services.PetTypeService;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class PetController {
 
     @GetMapping
     @RequestMapping({"/pets", "/pets/index"})
-    public String listPets(Model model) {
-        model.addAttribute("pets", petService.findAll());
+    public String listPets(Model model, Principal principal) {
+        model.addAttribute("pets", petService.findByUsername(principal.getName()));
         model.addAttribute("pet", new Pet());
         return "pets/index";
     }

@@ -18,7 +18,6 @@
                 <label class="col-sm-2 control-label">Nazwa </label>
                     <input class="form-control" th:field="*{name}" /> <span class="help-inline">
         <div>
-                th:if="${#fields.hasAnyErrors()}">
               <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
             </div>
     </span>

@@ -33,6 +33,13 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
+    public Set<Pet> findByUsername(String username) {
+        Set<Pet> pets = new HashSet<>();
+        petRepository.findPetsByUsername(username).forEach(pets::add);
+        return pets;
+    }
+
+    @Override
     public Pet findById(Long id) {
         Optional<Pet> petOptional = petRepository.findById(id);
 
