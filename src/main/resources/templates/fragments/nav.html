@@ -11,39 +11,16 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="#">Twoje konto</a>
-                <a class="dropdown-item" href="#">Wyloguj</a>
             </div>
         </div>
     <div class="collapse navbar-collapse" id="navbarText" style="justify-content: right">
 
         <img src="../icons/bell.svg" style="width: 20px;margin-right: 3%" />
         <div class="dropdown show dropleft">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
-            <svg width="20" height="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                 viewBox="0 0 285.5 285.5" style="enable-background:new 0 0 285.5 285.5;" xml:space="preserve">
-                   <g id="XMLID_470_">
-                      <path fill="white" id="XMLID_472_" d="M79.999,62.75c0,34.601,28.149,62.75,62.751,62.75s62.751-28.149,62.751-62.75S177.352,0,142.75,0
-                         S79.999,28.149,79.999,62.75z"/>
-                       <path fill="white" id="XMLID_473_" d="M42.75,285.5h200c8.284,0,15-6.716,15-15c0-63.411-51.589-115-115-115s-115,51.589-115,115
-                         C27.75,278.784,34.466,285.5,42.75,285.5z"/>
-                   </g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-            </svg>
-        </a>
+            <h5 th:inline="text">[[${#httpServletRequest.remoteUser}]]</h5>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout" />
+            </form>
         <div class="dropdown-menu mr-3" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#">Twoje konto</a>
             <a class="dropdown-item" href="#">Wyloguj</a>
