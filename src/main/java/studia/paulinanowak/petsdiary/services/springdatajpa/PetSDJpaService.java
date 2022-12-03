@@ -65,7 +65,6 @@ public class PetSDJpaService implements PetService {
     @Transactional
     public PetCommand savePetCommand(PetCommand command) {
         Pet detachedPet = petCommandToPet.convert(command);
-
         Pet savedPet = petRepository.save(detachedPet);
         return petToPetCommand.convert(savedPet);
     }

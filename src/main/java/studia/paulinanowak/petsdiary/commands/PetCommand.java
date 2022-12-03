@@ -11,10 +11,11 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class PetCommand {
-    private Long id;
+    private Long petId;
     private String name;
     private String dateOfBirth;
     private String breed;
     private String petTypeId;
     private Byte[] image;
+    private String username;
 }

@@ -7,8 +7,8 @@
 <body>
 
 
-    <form th:object="${pet}" th:action="@{/pet/}">
-        <input type="hidden" th:field="*{id}" />
+    <form th:object="${pet}" th:action="@{/pet/}" method="post">
+        <input type="hidden" th:field="*{petId}" />
         <input type="text" th:field="*{name}" />
         <input type="date" th:field="*{dateOfBirth}" />
         <input type="text" th:field="*{breed}" />

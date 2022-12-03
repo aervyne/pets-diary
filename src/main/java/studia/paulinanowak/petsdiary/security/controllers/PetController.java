@@ -56,7 +56,7 @@ public class PetController {
 
     @GetMapping
     @RequestMapping("/pet/update/{id}")
-    public String editPet(@PathVariable String id, Principal principal, Model model) {
+    public String updatePet(@PathVariable String id, Principal principal, Model model) {
         PetCommand pet = petService.findCommandByUsernameAndId(principal.getName(), Long.valueOf(id));
 
         model.addAttribute("pet", pet);
@@ -67,11 +67,13 @@ public class PetController {
 
     @PostMapping
     @RequestMapping("/pet")
-    public String saveOrUpdate(@ModelAttribute PetCommand command) {
-        System.out.println(command.getId());
+    public String saveOrUpdate(PetCommand command, Principal principal) {
+        System.out.println(command.getPetId());
+        System.out.println(command.getName());
+        command.setUsername(principal.getName());
         PetCommand savedCommand = petService.savePetCommand(command);
 
-        return "redirect:/pets/show/" + savedCommand.getId();
+        return "redirect:/pets/show/" + savedCommand.getPetId();
     }
 
     @GetMapping
