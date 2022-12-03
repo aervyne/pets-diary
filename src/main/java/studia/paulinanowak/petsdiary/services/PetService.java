@@ -16,4 +16,5 @@ public interface PetService {
     PetCommand findCommandById(Long id);
 
     void deleteById(Long id);
+    Pet findByUsernameAndId(String username, Long id);
 }

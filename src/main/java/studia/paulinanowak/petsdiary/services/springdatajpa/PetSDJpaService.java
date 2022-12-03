@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import studia.paulinanowak.petsdiary.commands.PetCommand;
 import studia.paulinanowak.petsdiary.conventers.PetCommandToPet;
 import studia.paulinanowak.petsdiary.conventers.PetToPetCommand;
+import studia.paulinanowak.petsdiary.errors.NotFoundException;
 import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.repositories.PetRepository;
 import studia.paulinanowak.petsdiary.services.PetService;
@@ -58,6 +59,17 @@ public class PetSDJpaService implements PetService {
     @Override
     public void deleteById(Long id) {
         petRepository.deleteById(id);
+    }
+
+    @Override
+    public Pet findByUsernameAndId(String username, Long id) {
+        Optional<Pet> optionalPet = petRepository.findPetByUsernameAndId(username, id);
+
+        if(!optionalPet.isPresent()) {
+            throw  new NotFoundException();
+        }
+
+        return optionalPet.get();
     }
 
     @Override

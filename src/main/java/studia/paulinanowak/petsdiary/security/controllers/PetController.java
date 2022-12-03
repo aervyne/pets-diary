@@ -1,4 +1,4 @@
-package studia.paulinanowak.petsdiary.controllers;
+package studia.paulinanowak.petsdiary.security.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,8 +39,9 @@ public class PetController {
 
     @GetMapping
     @RequestMapping("/pets/show/{id}")
-    public String showById(@PathVariable String id, Model model) {
-        model.addAttribute("pet", petService.findById(Long.valueOf(id)));
+    public String showById(@PathVariable String id, Principal principal, Model model) {
+        Pet pet = petService.findByUsernameAndId(principal.getName(), Long.valueOf(id));
+        model.addAttribute("pet", pet);
         return "pets/show";
     }
 
