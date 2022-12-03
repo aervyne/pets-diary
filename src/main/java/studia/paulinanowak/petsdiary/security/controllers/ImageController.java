@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Principal;
 
 @Controller
 public class ImageController {
@@ -28,8 +29,8 @@ public class ImageController {
     }
 
     @GetMapping("pet/image/{id}")
-    public String showUploadForm(@PathVariable String id, Model model){
-        model.addAttribute("pet", petService.findCommandById(Long.valueOf(id)));
+    public String showUploadForm(@PathVariable String id, Principal principal, Model model){
+        model.addAttribute("pet", petService.findCommandByUsernameAndId(principal.getName(), Long.valueOf(id)));
 
         return "pets/imageUploadForm";
     }
@@ -42,8 +43,8 @@ public class ImageController {
     }
 
     @GetMapping("pet/petimage/{id}")
-    public void renderImageFromDB(@PathVariable String id, HttpServletResponse response) throws IOException {
-        PetCommand petCommand = petService.findCommandById(Long.valueOf(id));
+    public void renderImageFromDB(@PathVariable String id, Principal principal, HttpServletResponse response) throws IOException {
+        PetCommand petCommand = petService.findCommandByUsernameAndId(principal.getName(), Long.valueOf(id));
 
         if (petCommand.getImage() != null) {
             byte[] byteArray = new byte[petCommand.getImage().length];

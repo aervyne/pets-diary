@@ -41,17 +41,6 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
-    public Pet findById(Long id) {
-        Optional<Pet> petOptional = petRepository.findById(id);
-
-        if(!petOptional.isPresent()) {
-            throw new RuntimeException("Pet not found!");
-        }
-
-        return petOptional.get();
-    }
-
-    @Override
     public Collection<Pet> findByName(String name) {
         return this.findAll().stream().filter(pet -> pet.getName().equalsIgnoreCase(name)).toList();
     }
@@ -83,7 +72,7 @@ public class PetSDJpaService implements PetService {
 
     @Override
     @Transactional
-    public PetCommand findCommandById(Long id) {
-        return petToPetCommand.convert(findById(id));
+    public PetCommand findCommandByUsernameAndId(String username, Long id) {
+        return petToPetCommand.convert(findByUsernameAndId(username, id));
     }
 }
