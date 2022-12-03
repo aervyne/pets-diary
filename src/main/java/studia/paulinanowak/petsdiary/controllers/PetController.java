@@ -1,4 +1,4 @@
-package studia.paulinanowak.petsdiary.security.controllers;
+package studia.paulinanowak.petsdiary.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +22,6 @@ public class PetController {
     public PetController(PetService petService, PetTypeService petTypeService) {
         this.petService = petService;
         this.petTypeService = petTypeService;
-    }
-
-    @InitBinder
-    public void setAllowedFields(WebDataBinder dataBinder) {
-        dataBinder.setDisallowedFields("id");
     }
 
     @GetMapping
@@ -68,12 +63,10 @@ public class PetController {
     @PostMapping
     @RequestMapping("/pet")
     public String saveOrUpdate(PetCommand command, Principal principal) {
-        System.out.println(command.getPetId());
-        System.out.println(command.getName());
         command.setUsername(principal.getName());
         PetCommand savedCommand = petService.savePetCommand(command);
 
-        return "redirect:/pets/show/" + savedCommand.getPetId();
+        return "redirect:/pets/show/" + savedCommand.getId();
     }
 
     @GetMapping

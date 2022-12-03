@@ -23,7 +23,7 @@ public class PetCommandToPet implements Converter<PetCommand, Pet> {
         }
 
         final Pet pet = new Pet();
-        // pet.setId(source.getId());
+        pet.setId(source.getId());
         pet.setName(source.getName());
         pet.setBreed(source.getBreed());
         pet.setPetType(petTypeService.findById(Long.valueOf(source.getPetTypeId())));

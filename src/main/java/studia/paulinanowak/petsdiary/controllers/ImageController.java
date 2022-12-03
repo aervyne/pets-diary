@@ -1,4 +1,4 @@
-package studia.paulinanowak.petsdiary.security.controllers;
+package studia.paulinanowak.petsdiary.controllers;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;

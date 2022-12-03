@@ -1,4 +1,4 @@
-package studia.paulinanowak.petsdiary.security.controllers;
+package studia.paulinanowak.petsdiary.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

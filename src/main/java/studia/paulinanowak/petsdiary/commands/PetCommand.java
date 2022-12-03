@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class PetCommand {
-    private Long petId;
+    private Long id;
     private String name;
     private String dateOfBirth;
     private String breed;
