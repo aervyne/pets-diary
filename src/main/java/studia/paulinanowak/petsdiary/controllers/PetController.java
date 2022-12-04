@@ -3,7 +3,6 @@ package studia.paulinanowak.petsdiary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import studia.paulinanowak.petsdiary.commands.PetCommand;
 import studia.paulinanowak.petsdiary.model.Pet;
@@ -12,7 +11,6 @@ import studia.paulinanowak.petsdiary.services.PetTypeService;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.List;
 
 @Controller
 public class PetController {
@@ -71,8 +69,8 @@ public class PetController {
 
     @GetMapping
     @RequestMapping("/pet/delete/{id}")
-    public String deletePet(@PathVariable String id){
-        petService.deleteById(Long.valueOf(id));
+    public String deletePet(@PathVariable String id, Principal principal){
+        petService.deleteById(principal.getName(), Long.valueOf(id));
 
         return "redirect:/pets/index";
     }

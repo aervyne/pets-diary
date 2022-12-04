@@ -46,8 +46,9 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        petRepository.deleteById(id);
+    @Transactional
+    public void deleteById(String username, Long id) {
+        petRepository.deletePetByUsernameAndId(username, id);
     }
 
     @Override
