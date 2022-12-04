@@ -10,7 +10,7 @@ import java.util.Set;
 public interface PetService {
     Set<Pet> findAll();
     Set<Pet> findByUsername(String username);
-    Collection<Pet> findByName(String name);
+    Collection<Pet> findByName(String username, String name);
     PetCommand savePetCommand(PetCommand command);
     PetCommand findCommandByUsernameAndId(String username, Long id);
 

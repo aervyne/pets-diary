@@ -41,8 +41,8 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
-    public Collection<Pet> findByName(String name) {
-        return this.findAll().stream().filter(pet -> pet.getName().equalsIgnoreCase(name)).toList();
+    public Collection<Pet> findByName(String username, String name) {
+        return this.findByUsername(username).stream().filter(pet -> pet.getName().equalsIgnoreCase(name)).toList();
     }
 
     @Override

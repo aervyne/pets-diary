@@ -77,15 +77,15 @@ public class PetController {
 
     @GetMapping
     @RequestMapping("/pets/search")
-    public String processFindForm(Pet pet, BindingResult result, Model model){
-        // allow parameterless GET request for /owners to return all records
+    public String processFindForm(Pet pet, BindingResult result, Model model, Principal principal){
+        // allow parameterless GET request for /pets to return all records
         System.out.println("Pet: " + pet.getName());
         if (pet.getName() == null) {
             pet.setName(""); // empty string signifies broadest possible search
         }
 
         // find owners by last name
-        Collection<Pet> results = petService.findByName(pet.getName().trim());
+        Collection<Pet> results = petService.findByName(principal.getName(), pet.getName().trim());
         System.out.println("Pet: " + pet.getName());
 
         if (results.size() == 1) {
