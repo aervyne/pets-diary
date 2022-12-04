@@ -12,11 +12,11 @@
 </head>
 <body style="height: 100%">
 <div th:replace="fragments/nav :: navbar"></div>
-<div style="height: 92%" class="container-fluid">
+<div style="height: 90%" class="container-fluid">
   <div style="height: 100%" class="row">
     <nav class="col-lg-2 d-none d-md-block sidebar" style="background-color: #212528">
       <div class="sidebar-sticky">
-        <ul class="nav flex-column">
+        <ul class="nav flex-column mt-3">
           <li class="nav-item">
             <a class="nav-link active" href="#" style="color: white">
               <svg width="25px" height="25px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +71,7 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <a class="btn btn-dark" th:href="@{'/pet/new'}" role="button">Dodaj</a>
         <form th:object="${pet}" th:action="@{/pets/search}" method="get"
-              class="form-horizontal" id="search-owner-form">
+              class="form-horizontal form-inline" id="search-owner-form">
           <input class="form-control" th:field="*{name}" /> <span class="help-inline">
         <div>
               <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
@@ -105,7 +105,7 @@
           </tr>
           </tbody>
         </table>
-      </div>
+      </div>fuse
     </main>
   </div>
 </div>

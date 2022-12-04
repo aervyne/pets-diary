@@ -1,31 +1,11 @@
-<div th:fragment="navbar">
-    <nav style="height: 8%;background-color: black;" class="navbar navbar-expand-lg bg-dark" th:fragment="nav">
-    <a class="navbar-brand" href="#" style="margin-left:3%"><h3>Pet's Diary</h3></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Twoje konto</a>
-            </div>
-        </div>
-    <div class="collapse navbar-collapse" id="navbarText" style="justify-content: right">
-
-        <img src="../icons/bell.svg" style="width: 20px;margin-right: 3%" />
-        <div class="dropdown show dropleft">
-            <h5 th:inline="text">[[${#httpServletRequest.remoteUser}]]</h5>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Logout" />
-            </form>
-        <div class="dropdown-menu mr-3" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Twoje konto</a>
-            <a class="dropdown-item" href="#">Wyloguj</a>
-        </div>
-        </div>
+<div style="height:10%;" th:fragment="navbar">
+    <nav style="background-color: black;height: 100%;" class="pb-0 navbar navbar-expand-lg bg-dark" th:fragment="nav">
+    <a class="navbar-brand text-white mr-auto" href="#" style="margin-left:3%"><h3>Pet's Diary</h3></a>
+    <div>
+        <h5 class="text-white mr-3" th:inline="text">[[${#httpServletRequest.remoteUser}]]</h5>
     </div>
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-outline-light" type="submit">Wyloguj</button>
+    </form>
     </nav>
 </div>
