@@ -1,13 +1,17 @@
 package studia.paulinanowak.petsdiary.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {
@@ -20,59 +24,16 @@ public class Pet extends BaseEntity {
     private PetType petType;
     @Column(name = "breed")
     private String breed;
+    @Column(name = "mother")
+    private String mother;
+    @Column(name = "father")
+    private String father;
+    @Column(name = "microchip_number")
+    private String microchipNumber;
     @Lob
     @Column(name = "image")
     private Byte[] image;
 
     @Column(name = "username")
     private String username;
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public PetType getPetType() {
-        return petType;
-    }
-
-    public void setPetType(PetType petType) {
-        this.petType = petType;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
-
-    public Byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(Byte[] image) {
-        this.image = image;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

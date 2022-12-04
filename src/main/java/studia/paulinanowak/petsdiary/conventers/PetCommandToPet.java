@@ -29,6 +29,9 @@ public class PetCommandToPet implements Converter<PetCommand, Pet> {
         pet.setPetType(petTypeService.findById(Long.valueOf(source.getPetTypeId())));
         pet.setDateOfBirth(LocalDate.parse(source.getDateOfBirth()));
         pet.setUsername(source.getUsername());
+        pet.setFather(source.getFather());
+        pet.setMother(source.getMother());
+        pet.setMicrochipNumber(source.getMicrochipNumber());
 
         return pet;
     }

@@ -27,6 +27,10 @@ public class PetToPetCommand implements Converter<Pet, PetCommand> {
         petCommand.setDateOfBirth(String.valueOf(source.getDateOfBirth()));
         petCommand.setName(source.getName());
         petCommand.setImage(source.getImage());
+        petCommand.setFather(source.getFather());
+        petCommand.setMother(source.getMother());
+        petCommand.setMicrochipNumber(source.getMicrochipNumber());
+        petCommand.setUsername(source.getUsername());
 
         return petCommand;
     }

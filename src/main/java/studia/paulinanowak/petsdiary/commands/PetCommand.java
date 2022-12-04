@@ -18,4 +18,7 @@ public class PetCommand {
     private String petTypeId;
     private Byte[] image;
     private String username;
+    private String mother;
+    private String father;
+    private String microchipNumber;
 }
