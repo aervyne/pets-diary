@@ -32,13 +32,14 @@
                         <div class="form-group col-md-5">
                             <h5><label for="name">Imię</label></h5>
                             <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Imię">
-                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</small>
                         </div>
                         <div class="form-group col-md-1">
                         </div>
                         <div class="form-group col-md-5">
                             <h5><label for="dateOfBirth">Data urodzenia</label></h5>
                             <input type="date" class="form-control" id="dateOfBirth" th:field="*{dateOfBirth}">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Name Error</small>
                         </div>
                         <div class="form-group col-md-1">
                         </div>
@@ -51,6 +52,38 @@
                                     <option th:value="${petType.id}" th:text="${petType.type}"></option>
                                 </th:block>
                             </select>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="breed">Rasa</label></h5>
+                            <input type="text" th:field="*{breed}" class="form-control" id="breed" placeholder="Rasa">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('breed')}" th:errors="*{name}">Name Error</small>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="mother">Matka</label></h5>
+                            <input type="text" th:field="*{mother}" class="form-control" id="mother" placeholder="Matka">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('mother')}" th:errors="*{mother}">Name Error</small>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="father">Ojciec</label></h5>
+                            <input type="text" th:field="*{father}" class="form-control" id="father" placeholder="Ojciec">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('father')}" th:errors="*{father}">Name Error</small>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="microchipNumber">Numer mikroczipu</label></h5>
+                            <input type="text" th:field="*{microchipNumber}" class="form-control" id="microchipNumber" placeholder="Numer mikroczipu">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('microchipNumber')}" th:errors="*{microchipNumber}">Name Error</small>
                         </div>
                         <div class="form-group col-md-1">
                         </div>
@@ -68,31 +101,6 @@
                                     Męska
                                 </label>
                             </div>
-                        </div>
-                        <div class="form-group col-md-1">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-5">
-                            <h5><label for="mother">Matka</label></h5>
-                            <input type="text" th:field="*{mother}" class="form-control" id="mother" placeholder="Matka">
-                            <p th:if="${#fields.hasErrors('mother')}" th:errors="*{mother}">Name Error</p>
-                        </div>
-                        <div class="form-group col-md-1">
-                        </div>
-                        <div class="form-group col-md-5">
-                            <h5><label for="father">Ojciec</label></h5>
-                            <input type="text" th:field="*{father}" class="form-control" id="father" placeholder="Ojciec">
-                            <p th:if="${#fields.hasErrors('father')}" th:errors="*{father}">Name Error</p>
-                        </div>
-                        <div class="form-group col-md-1">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-5">
-                            <h5><label for="microchipNumber">Numer mikroczipu</label></h5>
-                            <input type="text" th:field="*{microchipNumber}" class="form-control" id="microchipNumber" placeholder="Numer mikroczipu">
-                            <p th:if="${#fields.hasErrors('microchipNumber')}" th:errors="*{microchipNumber}">Name Error</p>
                         </div>
                     </div>
                     <div class="form-row">

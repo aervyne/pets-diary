@@ -13,16 +13,22 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class PetCommand {
     private Long id;
-    @NotBlank(message = "Imię nie może być puste.")
+    @NotBlank(message = "Wprowadź imię")
     private String name;
-    @NotBlank(message = "Data nie może być pusta.")
+    @NotBlank(message = "Wprowadź datę")
     private String dateOfBirth;
+    @NotBlank(message = "Wprowadż rasę")
     private String breed;
+    @NotBlank(message = "Wybierz gatunek")
     private String petTypeId;
     private Byte[] image;
     private String username;
+    @NotBlank(message = "Wprowadź imię matki")
     private String mother;
+    @NotBlank(message = "Wprowadź imię ojca")
     private String father;
+    @NotBlank(message = "Wprowadź numer mikroczipu")
     private String microchipNumber;
+    @NotBlank(message = "Wybierz płeć")
     private String gender;
 }
