@@ -3,12 +3,14 @@ package studia.paulinanowak.petsdiary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import studia.paulinanowak.petsdiary.commands.PetCommand;
 import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.services.PetService;
 import studia.paulinanowak.petsdiary.services.PetTypeService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Collection;
 
@@ -60,7 +62,11 @@ public class PetController {
 
     @PostMapping
     @RequestMapping("/pet")
-    public String saveOrUpdate(PetCommand command, Principal principal) {
+    public String saveOrUpdate(@Valid @ModelAttribute("pet") PetCommand command, Errors errors, Principal principal) {
+        if(errors.hasErrors()) {
+            return "pets/petForm";
+        }
+
         command.setUsername(principal.getName());
         PetCommand savedCommand = petService.savePetCommand(command);
 

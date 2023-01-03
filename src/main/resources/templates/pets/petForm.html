@@ -1,23 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="height: 100%" lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Dodaj</title>
+    <title>Zwierzęta</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
-<body>
+<body style="height: 100%">
+<div th:replace="fragments/nav :: navbar"></div>
+<div style="height: 90%" class="container-fluid">
+    <div style="height: 100%" class="row">
+        <nav th:replace="fragments/leftNavbar :: left_navbar"></nav>
+        <main role="main" class="col-lg-10 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+            <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dodaj zwierzę</h1>
+            </div>
 
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <a class="btn btn-dark" th:href="@{'/pets'}" role="button" style="margin-bottom: 20px;margin-left: auto;">Powrót do listy</a>
+            </div>
 
-    <form th:object="${pet}" th:action="@{/pet/}" method="post">
-        <input type="hidden" th:field="*{id}" />
-        <input type="text" th:field="*{name}" />
-        <input type="date" th:field="*{dateOfBirth}" />
-        <input type="text" th:field="*{breed}" />
-        <select th:field="*{petTypeId}">
-            <th:block th:each="petType : ${petTypes}">
-                <option th:value="${petType.id}" th:text="${petType.type}"></option>
-            </th:block>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+            <div>
+                <form th:object="${pet}" th:action="@{/pet/}" method="post">
+                    <input type="hidden" th:field="*{id}" />
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="name">Imię</label></h5>
+                            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Imię">
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="dateOfBirth">Data urodzenia</label></h5>
+                            <input type="date" class="form-control" id="dateOfBirth" th:field="*{dateOfBirth}">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="type">Gatunek</label></h5>
+                            <select class="custom-select" name="type" id="type" th:field="*{petTypeId}">
+                                <th:block th:each="petType : ${petTypes}">
+                                    <option th:value="${petType.id}" th:text="${petType.type}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><legend class="col-form-label col-sm-2 pt-0">Płeć</legend></h5>
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="*{gender}" type="radio" name="gender" id="żeńska" value="żeńska" checked>
+                                <label class="form-check-label" for="żeńska">
+                                    Żeńska
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="*{gender}" type="radio" name="gender" id="męska" value="męska">
+                                <label class="form-check-label" for="męska">
+                                    Męska
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="mother">Matka</label></h5>
+                            <input type="text" th:field="*{mother}" class="form-control" id="mother" placeholder="Matka">
+                            <p th:if="${#fields.hasErrors('mother')}" th:errors="*{mother}">Name Error</p>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="father">Ojciec</label></h5>
+                            <input type="text" th:field="*{father}" class="form-control" id="father" placeholder="Ojciec">
+                            <p th:if="${#fields.hasErrors('father')}" th:errors="*{father}">Name Error</p>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="microchipNumber">Numer mikroczipu</label></h5>
+                            <input type="text" th:field="*{microchipNumber}" class="form-control" id="microchipNumber" placeholder="Numer mikroczipu">
+                            <p th:if="${#fields.hasErrors('microchipNumber')}" th:errors="*{microchipNumber}">Name Error</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-dark" style="margin-left: 80%;margin-top: 15px;">Zapisz</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+</div>
+
 </body>
 </html>

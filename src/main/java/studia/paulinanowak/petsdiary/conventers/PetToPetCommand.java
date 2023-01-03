@@ -31,6 +31,7 @@ public class PetToPetCommand implements Converter<Pet, PetCommand> {
         petCommand.setMother(source.getMother());
         petCommand.setMicrochipNumber(source.getMicrochipNumber());
         petCommand.setUsername(source.getUsername());
+        petCommand.setGender(source.getGender());
 
         return petCommand;
     }

@@ -30,6 +30,8 @@ public class Pet extends BaseEntity {
     private String father;
     @Column(name = "microchip_number")
     private String microchipNumber;
+    @Column(name = "gender")
+    private String gender;
     @Lob
     @Column(name = "image")
     private Byte[] image;
