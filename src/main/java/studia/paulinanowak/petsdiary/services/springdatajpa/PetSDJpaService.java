@@ -63,6 +63,12 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
+    public Pet findById(Long id) {
+        Optional<Pet> pet = petRepository.findById(id);
+        return pet.get();
+    }
+
+    @Override
     @Transactional
     public PetCommand savePetCommand(PetCommand command) {
         Pet detachedPet = petCommandToPet.convert(command);
