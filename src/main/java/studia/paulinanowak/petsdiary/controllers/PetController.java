@@ -62,7 +62,10 @@ public class PetController {
 
     @PostMapping
     @RequestMapping("/pet")
-    public String saveOrUpdate(@Valid @ModelAttribute("pet") PetCommand command, Errors errors, Principal principal) {
+    public String saveOrUpdate(@Valid @ModelAttribute("pet") PetCommand command, Errors errors, Principal principal,
+                               Model model) {
+        model.addAttribute("petTypes", petTypeService.findAll());
+
         if(errors.hasErrors()) {
             return "pets/petForm";
         }
