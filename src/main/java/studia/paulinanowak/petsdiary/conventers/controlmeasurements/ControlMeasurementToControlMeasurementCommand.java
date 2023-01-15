@@ -22,6 +22,7 @@ public class ControlMeasurementToControlMeasurementCommand implements Converter<
         command.setPetId(source.getPet().getId().toString());
         command.setHeight(String.valueOf(source.getHeight()));
         command.setWeight(String.valueOf(source.getWeight()));
+        command.setWeight(source.getDate().toString());
 
         return command;
     }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +22,6 @@ public class ControlMeasurement extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "ID_pet")
     private Pet pet;
+    @Column(name ="date")
+    private LocalDate date;
 }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import studia.paulinanowak.petsdiary.commands.ControlMeasurementCommand;
 import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.services.ControlMeasurementService;
 import studia.paulinanowak.petsdiary.services.PetService;
@@ -28,5 +29,14 @@ public class ControlMeasurementController {
         model.addAttribute("measurements", controlMeasurementService.findAllByPets(pets));
 
         return "measurement/index";
+    }
+
+    @GetMapping
+    @RequestMapping("/controlmeasurements/new")
+    public String newControlMeasurement(Model model, Principal principal) {
+        model.addAttribute("measurement", new ControlMeasurementCommand());
+        model.addAttribute("pets", petService.findByUsername(principal.getName()));
+
+        return "measurement/form";
     }
 }

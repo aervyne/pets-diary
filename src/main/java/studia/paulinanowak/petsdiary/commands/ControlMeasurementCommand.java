@@ -17,4 +17,6 @@ public class ControlMeasurementCommand {
     private String height;
     @NotBlank(message = "Wprowadź pomiar")
     private String weight;
+    @NotBlank(message = "Wprowadź datę")
+    private String date;
 }

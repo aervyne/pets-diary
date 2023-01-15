@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html style="height: 100%" lang="pl">
+<head>
+    <title>Zwierzęta</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body style="height: 100%">
+<div th:replace="fragments/nav :: navbar"></div>
+<div style="height: 90%" class="container-fluid">
+    <div style="height: 100%" class="row">
+        <nav th:replace="fragments/leftNavbar :: left_navbar"></nav>
+        <main role="main" class="col-lg-10 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+            <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dodaj pomiar kontrolny</h1>
+            </div>
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <a class="btn btn-dark" th:href="@{'/controlmeasurements'}" role="button" style="margin-bottom: 20px;margin-left: auto;">Powrót do listy</a>
+            </div>
+
+            <div>
+                <form th:object="${measurement}" th:action="@{/controlmeasurements/save/}" method="post">
+                    <input type="hidden" th:field="*{id}" />
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="date">Data pomiaru</label></h5>
+                            <input type="date" class="form-control" id="date" th:field="*{date}">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date Error</small>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="pet">Zwierzę</label></h5>
+                            <select class="custom-select" name="pet" id="pet">
+                                <th:block th:each="pet : ${pets}">
+                                    <option th:value="${pet.id}" th:text="${pet.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="weight">Waga</label></h5>
+                            <input type="number" th:field="*{weight}" class="form-control" id="weight">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Weight Error</small>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="height">Wzrost</label></h5>
+                            <input type="number" th:field="*{height}" class="form-control" id="height">
+                            <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('height')}" th:errors="*{height}">Height Error</small>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-dark" style="margin-left: 80%;margin-top: 15px;">Zapisz</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

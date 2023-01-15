@@ -30,6 +30,7 @@
                     <caption>Pomiary kontrolne</caption>
                     <thead>
                     <tr>
+                        <th scope="col">Data pomiaru</th>
                         <th scope="col">Zwierzę</th>
                         <th scope="col">Waga</th>
                         <th scope="col">Wzrost</th>
@@ -37,6 +38,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="measurement:${measurements}">
+                        <td th:text="${measurement.date}"></td>
                         <td th:text="${measurement.pet.getName()}"></td>
                         <td th:text="${measurement.height}"></td>
                         <td th:text="${measurement.weight}"></td>
