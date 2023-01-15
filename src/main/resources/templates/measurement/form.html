@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group col-md-5">
                             <h5><label for="pet">Zwierzę</label></h5>
-                            <select class="custom-select" name="pet" id="pet">
+                            <select class="custom-select" name="pet" id="pet" th:field="*{petId}">
                                 <th:block th:each="pet : ${pets}">
                                     <option th:value="${pet.id}" th:text="${pet.name}"></option>
                                 </th:block>
@@ -50,7 +50,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-5">
                             <h5><label for="weight">Waga</label></h5>
-                            <input type="number" th:field="*{weight}" class="form-control" id="weight">
+                            <input type="number" step=".01" th:field="*{weight}" class="form-control" id="weight">
                             <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Weight Error</small>
                         </div>
                         <div class="form-group col-md-1">
