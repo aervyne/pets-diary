@@ -44,4 +44,31 @@ public class ControlMeasurementSDJpaService implements ControlMeasurementService
         ControlMeasurement detachedControlMeasurement = controlMeasurementCommandToControlMeasurement.convert(command);
         controlMeasurementRepository.save(detachedControlMeasurement);
     }
+
+    @Override
+    public ControlMeasurement findById(Long id) {
+        return controlMeasurementRepository.findById(id).get();
+    }
+
+    @Override
+    public ControlMeasurementCommand findCommandByUsernameAndId(Long id, String username) {
+        ControlMeasurement controlMeasurement = findById(id);
+
+        if (controlMeasurement.getPet().getUsername().equals(username)) {
+            return controlMeasurementToControlMeasurementCommand.convert(controlMeasurement);
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    @Override
+    public void deleteById(Long id, String username) {
+        ControlMeasurement controlMeasurement = findById(id);
+
+        if(username.equals(controlMeasurement.getPet().getUsername())) {
+            controlMeasurementRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Nie można usunąć");
+        }
+    }
 }

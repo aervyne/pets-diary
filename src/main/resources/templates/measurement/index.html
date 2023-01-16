@@ -34,14 +34,17 @@
                         <th scope="col">Zwierzę</th>
                         <th scope="col">Waga</th>
                         <th scope="col">Wzrost</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="measurement:${measurements}">
                         <td th:text="${measurement.date}"></td>
                         <td th:text="${measurement.pet.getName()}"></td>
-                        <td th:text="${measurement.height}"></td>
                         <td th:text="${measurement.weight}"></td>
+                        <td th:text="${measurement.height}"></td>
+                        <td><a href="#" th:href="@{'/controlmeasurements/update/' + ${measurement.id}}">Edytuj</a>
+                            <a href="#" th:href="@{'/controlmeasurement/delete/' + ${measurement.id}}">Usuń</a></td>
                     </tr>
                     </tbody>
                 </table>

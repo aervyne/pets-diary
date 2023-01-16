@@ -3,11 +3,9 @@ package studia.paulinanowak.petsdiary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import studia.paulinanowak.petsdiary.commands.ControlMeasurementCommand;
+import studia.paulinanowak.petsdiary.model.ControlMeasurement;
 import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.services.ControlMeasurementService;
 import studia.paulinanowak.petsdiary.services.PetService;
@@ -57,5 +55,27 @@ public class ControlMeasurementController {
         controlMeasurementService.saveControlMeasurement(command);
 
         return "redirect:/controlmeasurements";
+    }
+
+    @GetMapping
+    @RequestMapping("/controlmeasurement/delete/{id}")
+    public String delete(@PathVariable String id, Principal principal) {
+        System.out.println("Kontroler 1");
+        controlMeasurementService.deleteById(Long.valueOf(id), principal.getName());
+
+        System.out.println("Kontroler 2");
+        return "redirect:/controlmeasurements";
+    }
+
+    @GetMapping
+    @RequestMapping("/controlmeasurements/update/{id}")
+    public String update(@PathVariable String id, Principal principal, Model model) {
+        ControlMeasurementCommand measurementCommand = controlMeasurementService.findCommandByUsernameAndId(Long.valueOf(id),
+                principal.getName());
+
+        model.addAttribute("measurement", measurementCommand);
+        model.addAttribute("pets", petService.findByUsername(principal.getName()));
+
+        return "measurement/form";
     }
 }
