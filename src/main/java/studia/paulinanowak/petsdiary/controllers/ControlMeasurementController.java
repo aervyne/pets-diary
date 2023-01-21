@@ -60,10 +60,7 @@ public class ControlMeasurementController {
     @GetMapping
     @RequestMapping("/controlmeasurement/delete/{id}")
     public String delete(@PathVariable String id, Principal principal) {
-        System.out.println("Kontroler 1");
         controlMeasurementService.deleteById(Long.valueOf(id), principal.getName());
-
-        System.out.println("Kontroler 2");
         return "redirect:/controlmeasurements";
     }
 
