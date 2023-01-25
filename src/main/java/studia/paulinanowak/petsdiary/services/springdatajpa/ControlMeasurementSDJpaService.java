@@ -71,4 +71,9 @@ public class ControlMeasurementSDJpaService implements ControlMeasurementService
             throw new RuntimeException("Nie można usunąć");
         }
     }
+
+    @Override
+    public Set<ControlMeasurement> findAllByPet(Pet pet) {
+        return controlMeasurementRepository.findControlMeasurementsByPet(pet);
+    }
 }

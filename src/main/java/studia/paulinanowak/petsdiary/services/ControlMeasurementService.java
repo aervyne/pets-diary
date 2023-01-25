@@ -14,4 +14,5 @@ public interface ControlMeasurementService {
     ControlMeasurementCommand findCommandByUsernameAndId(Long id, String username);
 
     void deleteById(Long id, String username);
+    Set<ControlMeasurement> findAllByPet(Pet pet);
 }

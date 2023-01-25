@@ -8,4 +8,5 @@ import java.util.Set;
 
 public interface ControlMeasurementRepository extends CrudRepository<ControlMeasurement, Long> {
     Set<ControlMeasurement> findControlMeasurementsByPet(Pet pet);
+
 }
