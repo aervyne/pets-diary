@@ -1,29 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="height: 100%" lang="pl">
 <head>
-    <meta charset="UTF-8">
+    <title>Zwierzęta</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Pets Diary</title>
+
 </head>
-<body>
-    <table>
-        <tr>
-            <td>Imię</td>
-            <td th:text="${pet.name}"></td>
-        </tr>
-        <tr>
-            <td>Data urodzenia</td>
-            <td th:text="${pet.dateOfBirth}"></td>
-        </tr>
-        <tr>
-            <td>Rasa</td>
-            <td th:text="${pet.breed}"></td>
-        </tr>
-        <tr>
-            <td>Gatunek</td>
-            <td th:text="${pet.petType.getType()}"></td>
-        </tr>
-    </table>
-    <img th:src="@{'/pet/petimage/' + ${pet.id}}">
+<body style="height: 100%">
+<div th:replace="fragments/nav :: navbar"></div>
+<div style="height: 90%" class="container-fluid">
+    <div style="height: 100%" class="row">
+        <nav th:replace="fragments/leftNavbar :: left_navbar"></nav>
+        <main role="main" class="col-lg-10 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+            <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Twoje zwierzęta</h1>
+            </div>
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <a class="btn btn-dark" th:href="@{'/pets'}" role="button" style="margin-bottom: 20px;margin-left: auto;">Powrót do listy</a>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+                <table style="font-size: 25px; width: 500px;">
+                    <tbody>
+                    <tr>
+                        <th style="font-weight: 500">Imię: </th>
+                        <td th:text="${pet.name}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Data urodzenia: </th>
+                        <td th:text="${pet.dateOfBirth}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Rasa: </th>
+                        <td th:text="${pet.breed}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Gatunek: </th>
+                        <td th:text="${pet.petType.getType()}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Płeć: </th>
+                        <td th:text="${pet.gender}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Numer mikroczipu: </th>
+                        <td th:text="${pet.microchipNumber}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Matka: </th>
+                        <td th:text="${pet.mother}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Ojciec: </th>
+                        <td th:text="${pet.father}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${pet.image} == null" class="col-md-6">
+                <img th:src="@{/images/imageNotFound.jpg}" class="img-fluid" alt="Responsive image">
+            </div>
+                <div th:unless="${pet.image} == null" class="col-md-6">
+                    <img th:src="@{'/pet/petimage/' + ${pet.id}}" class="img-fluid" alt="Responsive image">
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
