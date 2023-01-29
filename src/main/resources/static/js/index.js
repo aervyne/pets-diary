@@ -13,11 +13,6 @@ function drawLineChartWithMeasurement(date, weight, height) {
                 description: 'Months of the year'
             }
         },
-        tooltip: {
-            formatter: function (){
-                return '<strong>' + this.x + ': </strong>' + this.y;
-            }
-        },
         series: [{
             data: weight
         }, {
