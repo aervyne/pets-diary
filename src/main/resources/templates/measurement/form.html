@@ -14,7 +14,44 @@
 <div th:replace="fragments/nav :: navbar"></div>
 <div style="height: 90%" class="container-fluid">
     <div style="height: 100%" class="row">
-        <nav th:replace="fragments/leftNavbar :: left_navbar"></nav>
+        <nav class="col-lg-2 d-none d-md-block sidebar"
+             style="background-color: white; border-right: 4px solid #dee2e6; font-size: 21px; margin-top: 20px; font-weight: 550 "
+             th:fragment="left_navbar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column mt-3 list-group list-group-flush">
+                    <li class="nav-item list-group-item">
+                        <a class="nav-link active" th:href="@{'/pets'}" style="color: #343a40;">
+                            Zwierzęta <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item list-group-item" style="background-color: #E1E1E1;">
+                        <a class="nav-link fs-1" th:href="@{'/controlmeasurements'}" style="color: #343a40;">
+                            Pomiary kontrolne
+                        </a>
+                    </li>
+                    <li class="nav-item list-group-item">
+                        <a class="nav-link" href="#" style="color: #343a40;">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item list-group-item">
+                        <a class="nav-link" href="#" style="color: #343a40;">
+                            Customers
+                        </a>
+                    </li>
+                    <li class="nav-item list-group-item">
+                        <a class="nav-link" href="#" style="color: #343a40;">
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item list-group-item">
+                        <a class="nav-link" href="#" style="color: #343a40;">
+                            Integrations
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <main role="main" class="col-lg-10 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
             <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -49,14 +86,14 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-5">
-                            <h5><label for="weight">Waga</label></h5>
+                            <h5><label for="weight">Waga (kg)</label></h5>
                             <input type="number" step=".01" th:field="*{weight}" class="form-control" id="weight">
                             <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Weight Error</small>
                         </div>
                         <div class="form-group col-md-1">
                         </div>
                         <div class="form-group col-md-5">
-                            <h5><label for="height">Wzrost</label></h5>
+                            <h5><label for="height">Wzrost (cm)</label></h5>
                             <input type="number" step=".01" th:field="*{height}" class="form-control" id="height">
                             <small class="form-text" style="color: red;" th:if="${#fields.hasErrors('height')}" th:errors="*{height}">Height Error</small>
                         </div>
