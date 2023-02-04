@@ -11,9 +11,7 @@ import studia.paulinanowak.petsdiary.repositories.ControlMeasurementRepository;
 import studia.paulinanowak.petsdiary.services.ControlMeasurementService;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Profile("springdatajpa")
@@ -31,8 +29,8 @@ public class ControlMeasurementSDJpaService implements ControlMeasurementService
     }
 
     @Override
-    public Set<ControlMeasurement> findAllByPets(Collection<Pet> pets) {
-        Set<ControlMeasurement> controlMeasurements = new HashSet<>();
+    public List<ControlMeasurement> findAllByPets(Collection<Pet> pets) {
+        List<ControlMeasurement> controlMeasurements = new ArrayList<>();
         pets.forEach(pet -> controlMeasurements.addAll(controlMeasurementRepository.findControlMeasurementsByPet(pet)));
 
         return controlMeasurements;
@@ -73,7 +71,7 @@ public class ControlMeasurementSDJpaService implements ControlMeasurementService
     }
 
     @Override
-    public Set<ControlMeasurement> findAllByPet(Pet pet) {
+    public List<ControlMeasurement> findAllByPet(Pet pet) {
         return controlMeasurementRepository.findControlMeasurementsByPet(pet);
     }
 }

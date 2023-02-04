@@ -5,14 +5,14 @@ import studia.paulinanowak.petsdiary.model.ControlMeasurement;
 import studia.paulinanowak.petsdiary.model.Pet;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 public interface ControlMeasurementService {
-    Set<ControlMeasurement> findAllByPets(Collection<Pet> pets);
+    List<ControlMeasurement> findAllByPets(Collection<Pet> pets);
     void saveControlMeasurement(ControlMeasurementCommand controlMeasurementCommand);
     ControlMeasurement findById(Long id);
     ControlMeasurementCommand findCommandByUsernameAndId(Long id, String username);
 
     void deleteById(Long id, String username);
-    Set<ControlMeasurement> findAllByPet(Pet pet);
+    List<ControlMeasurement> findAllByPet(Pet pet);
 }

@@ -27,15 +27,15 @@ public class PetSDJpaService implements PetService {
     }
 
     @Override
-    public Set<Pet> findAll() {
-        Set<Pet> pets = new HashSet<>();
+    public List<Pet> findAll() {
+        List<Pet> pets = new ArrayList<>();
         petRepository.findAll().forEach(pets::add);
         return pets;
     }
 
     @Override
-    public Set<Pet> findByUsername(String username) {
-        Set<Pet> pets = new HashSet<>();
+    public List<Pet> findByUsername(String username) {
+        List<Pet> pets = new ArrayList<>();
         petRepository.findPetsByUsername(username).forEach(pets::add);
         return pets;
     }

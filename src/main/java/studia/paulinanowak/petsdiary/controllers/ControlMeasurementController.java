@@ -5,14 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import studia.paulinanowak.petsdiary.commands.ControlMeasurementCommand;
-import studia.paulinanowak.petsdiary.model.ControlMeasurement;
 import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.services.ControlMeasurementService;
 import studia.paulinanowak.petsdiary.services.PetService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Set;
+import java.util.List;
 
 @Controller
 public class ControlMeasurementController {
@@ -27,7 +26,7 @@ public class ControlMeasurementController {
     @GetMapping
     @RequestMapping("/controlmeasurements")
     public String listMeasurement(Model model, Principal principal) {
-        Set<Pet> pets = petService.findByUsername(principal.getName());
+        List<Pet> pets = petService.findByUsername(principal.getName());
         model.addAttribute("measurements", controlMeasurementService.findAllByPets(pets));
 
         return "measurement/index";
