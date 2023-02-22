@@ -25,7 +25,7 @@ public class PetController {
     }
 
     @GetMapping
-    @RequestMapping({"/","/pets", "/pets/index"})
+    @RequestMapping({"/pets", "/pets/index"})
     public String listPets(Model model, Principal principal) {
         model.addAttribute("pets", petService.findByUsername(principal.getName()));
         model.addAttribute("pet", new Pet());
