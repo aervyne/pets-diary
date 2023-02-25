@@ -1,4 +1,4 @@
-package studia.paulinanowak.petsdiary.conventers;
+package studia.paulinanowak.petsdiary.conventers.pets;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

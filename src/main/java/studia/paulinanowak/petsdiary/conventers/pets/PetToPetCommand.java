@@ -1,4 +1,4 @@
-package studia.paulinanowak.petsdiary.conventers;
+package studia.paulinanowak.petsdiary.conventers.pets;
 
 import io.micrometer.core.lang.Nullable;
 import lombok.Synchronized;
