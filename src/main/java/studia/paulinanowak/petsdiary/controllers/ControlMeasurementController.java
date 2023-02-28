@@ -28,6 +28,7 @@ public class ControlMeasurementController {
     public String listMeasurement(Model model, Principal principal) {
         List<Pet> pets = petService.findByUsername(principal.getName());
         model.addAttribute("measurements", controlMeasurementService.findAllByPets(pets));
+        model.addAttribute("view", 2);
 
         return "measurement/index";
     }
@@ -37,6 +38,7 @@ public class ControlMeasurementController {
     public String newControlMeasurement(Model model, Principal principal) {
         model.addAttribute("measurement", new ControlMeasurementCommand());
         model.addAttribute("pets", petService.findByUsername(principal.getName()));
+        model.addAttribute("view", 2);
 
         return "measurement/form";
     }
@@ -71,6 +73,7 @@ public class ControlMeasurementController {
 
         model.addAttribute("measurement", measurementCommand);
         model.addAttribute("pets", petService.findByUsername(principal.getName()));
+        model.addAttribute("view", 2);
 
         return "measurement/form";
     }

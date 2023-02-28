@@ -29,6 +29,7 @@ public class PetController {
     public String listPets(Model model, Principal principal) {
         model.addAttribute("pets", petService.findByUsername(principal.getName()));
         model.addAttribute("pet", new Pet());
+        model.addAttribute("view", 1);
         return "pets/index";
     }
 
@@ -37,6 +38,7 @@ public class PetController {
     public String showById(@PathVariable String id, Principal principal, Model model) {
         Pet pet = petService.findByUsernameAndId(principal.getName(), Long.valueOf(id));
         model.addAttribute("pet", pet);
+        model.addAttribute("view", 1);
         return "pets/show";
     }
 
@@ -45,7 +47,7 @@ public class PetController {
     public String newPet(Model model) {
         model.addAttribute("pet", new PetCommand());
         model.addAttribute("petTypes", petTypeService.findAll());
-
+        model.addAttribute("view", 1);
         return "pets/petForm";
     }
 
@@ -56,7 +58,7 @@ public class PetController {
 
         model.addAttribute("pet", pet);
         model.addAttribute("petTypes", petTypeService.findById(Long.valueOf(pet.getPetTypeId())));
-
+        model.addAttribute("view", 1);
         return "pets/petForm";
     }
 
@@ -65,6 +67,7 @@ public class PetController {
     public String saveOrUpdate(@Valid @ModelAttribute("pet") PetCommand command, Errors errors, Principal principal,
                                Model model) {
         model.addAttribute("petTypes", petTypeService.findAll());
+        model.addAttribute("view", 1);
 
         if(errors.hasErrors()) {
             return "pets/petForm";
@@ -80,13 +83,13 @@ public class PetController {
     @RequestMapping("/pet/delete/{id}")
     public String deletePet(@PathVariable String id, Principal principal){
         petService.deleteById(principal.getName(), Long.valueOf(id));
-
         return "redirect:/pets/index";
     }
 
     @GetMapping
     @RequestMapping("/pets/search")
     public String processFindForm(Pet pet, BindingResult result, Model model, Principal principal){
+        model.addAttribute("view", 1);
         // allow parameterless GET request for /pets to return all records
         System.out.println("Pet: " + pet.getName());
         if (pet.getName() == null) {
