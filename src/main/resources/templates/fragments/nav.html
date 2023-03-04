@@ -2,7 +2,7 @@
     <nav style="background-color: black;height: 100%;" class="pb-0 navbar navbar-expand-lg bg-dark" th:fragment="nav">
     <a class="navbar-brand text-white mr-auto" href="#" style="margin-left:3%"><h3>Pet's Diary</h3></a>
     <div>
-        <h5 class="text-white mr-3" th:inline="text">[[${#httpServletRequest.remoteUser}]]</h5>
+        <a th:href="@{'/user'}"><h5 class="text-white mr-3" th:inline="text">[[${#httpServletRequest.remoteUser}]]</h5></a>
     </div>
     <form th:action="@{/logout}" method="post">
         <button class="btn btn-outline-light" type="submit">Wyloguj</button>

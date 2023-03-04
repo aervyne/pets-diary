@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html style="height: 100%" lang="pl" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Dane użytkownika</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body style="height: 100%">
+<div th:replace="fragments/nav :: navbar"></div>
+<div style="height: 90%" class="container-fluid">
+    <div style="height: 100%" class="row">
+        <nav th:replace="fragments/leftNavbar :: left_navbar"></nav>
+        <main role="main" class="col-lg-10 ml-sm-auto col-lg-10 px-4">
+            <div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dane użytkownika</h1>
+            </div>
+
+            <div class="row">
+            <div class="col-md-5">
+                <table style="font-size: 22px; width: 300px;">
+                    <tbody>
+                    <tr>
+                        <th style="font-weight: 500">Imię: </th>
+                        <td th:text="${user.firstname}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">Nazwisko: </th>
+                        <td th:text="${user.lastname}"></td>
+                    </tr>
+                    <tr>
+                        <th style="font-weight: 500">E-mail: </th>
+                        <td th:text="${user.username}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#userModal">
+                    Zmień dane
+                </button>
+            </div></div>
+
+            <div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2" style="margin-top: 30px">Hodowla</h1>
+            </div>
+        </main>
+    </div>
+</div>
+</div>
+
+
+<div class="modal" id="userModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Zmiana danych użytkowanika</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form th:object="${user}" th:action="@{/user/save}" method="post">
+            <div class="modal-body">
+                    <input type="hidden" th:field="*{id}" />
+                    <div class="form-row">
+                        <input type="hidden" class="form-control" id="username" th:field="*{username}" placeholder="e-mail">
+                        <div class="form-group col-md-5">
+                            <h5><label for="firstname">Imię</label></h5>
+                            <input type="text" th:field="*{firstname}" class="form-control" id="firstname" placeholder="Imię">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="lastname">Nazwisko</label></h5>
+                            <input type="text" class="form-control" id="lastname" th:field="*{lastname}" placeholder="nazwisko">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="password">Hasło</label></h5>
+                            <input type="password" th:field="*{password}" class="form-control" id="password">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="repeatPassword">Powtórz hasło</label></h5>
+                            <input type="password" th:field="*{repeatPassword}" class="form-control" id="repeatPassword">
+                            <div th:if="${errorPassword} != null">
+                                <small class="form-text" style="color: red;">Hasła nie są identyczne</small>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div th:if="${info} != null" style="margin-top: 15px">
+                            <h5>Zostałeś zarejestrowany, możnasz przejść do logowania</h5>
+                        </div>
+                    </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                <button type="submit" class="btn btn-dark" style="margin-left: 5px;">Zatwierdź</button>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
