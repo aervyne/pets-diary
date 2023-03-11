@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import studia.paulinanowak.petsdiary.commands.UserCommand;
+import studia.paulinanowak.petsdiary.services.BreedingService;
 import studia.paulinanowak.petsdiary.services.UserService;
 
 import javax.validation.Valid;
@@ -14,9 +15,11 @@ import javax.validation.Valid;
 @Controller
 public class LoginController {
     private final UserService userService;
+    private final BreedingService breedingService;
 
-    public LoginController(UserService userService) {
+    public LoginController(UserService userService, BreedingService breedingService) {
         this.userService = userService;
+        this.breedingService = breedingService;
     }
 
     @GetMapping
@@ -59,6 +62,8 @@ public class LoginController {
         }
 
         userService.saveUserCommand(userCommand);
+        breedingService.createBreeding(userCommand.getUsername());
+
         model.addAttribute("info", "Zostałeś zarejestrowany, możnasz przejść do logowania");
         return "register";
     }

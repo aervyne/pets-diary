@@ -35,7 +35,6 @@ public class Pet extends BaseEntity {
     @Lob
     @Column(name = "image")
     private Byte[] image;
-
     @Column(name = "username")
     private String username;
 }
