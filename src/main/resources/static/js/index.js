@@ -2,10 +2,11 @@ function drawLineChartWithMeasurement(date, weight, height) {
     Highcharts.chart("chart", {
         chart: {
             type: 'line',
-            width: 500
+            width: 800,
+            height: 500
         },
         title: {
-            text: 'Line chart'
+            text: '<b>Pomiary kontrolne</b>'
         },
         xAxis: {
             categories: date,
@@ -13,10 +14,17 @@ function drawLineChartWithMeasurement(date, weight, height) {
                 description: 'Months of the year'
             }
         },
+        yAxis: {
+            title : {
+                text : 'Waga [kg] / Wzrost [cm]'
+            }
+        },
         series: [{
-            data: weight
+            data: weight,
+            name: "Waga"
         }, {
-            data: height
+            data: height,
+            name: "Wzrost"
         }]
     })
 }
