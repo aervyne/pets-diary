@@ -22,4 +22,14 @@ public class BreedingSDJpaService implements BreedingService {
 
         breedingRepository.save(breeding);
     }
+
+    @Override
+    public Breeding findByUsername(String username) {
+        return breedingRepository.findByUsername(username);
+    }
+
+    @Override
+    public void saveBreeding(Breeding breeding) {
+        breedingRepository.save(breeding);
+    }
 }

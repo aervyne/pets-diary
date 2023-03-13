@@ -4,4 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import studia.paulinanowak.petsdiary.model.Breeding;
 
 public interface BreedingRepository extends CrudRepository<Breeding, Long> {
+    Breeding findByUsername(String username);
 }

@@ -52,6 +52,67 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2" style="margin-top: 30px">Hodowla</h1>
             </div>
+            <div>
+                <form th:object="${breeding}" th:action="@{/user/breeding}" method="post">
+                    <input type="hidden" th:field="*{id}" />
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="name">Nazwa hodowli</label></h5>
+                            <input type="text" th:field="*{name}" class="form-control" id="name">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="phoneNumber">Numer telefonu</label></h5>
+                            <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="email">Adres e-mail</label></h5>
+                            <input type="email" class="form-control" id="email" th:field="*{email}">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="association">Stowarzyszenie</label></h5>
+                            <input type="text" th:field="*{association}" class="form-control" id="association">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <h5><label for="city">Miasto</label></h5>
+                            <input type="text" th:field="*{city}" class="form-control" id="city">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <h5><label for="street">Ulica</label></h5>
+                            <input type="text" th:field="*{street}" class="form-control" id="street">
+                        </div>
+                        <div class="form-group col-md-1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <h5><label for="apartment">Numer domu</label></h5>
+                            <input type="text" th:field="*{apartment}" class="form-control" id="apartment">
+                        </div>
+                        <div class="form-group col-md-4">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input type="hidden" th:field="*{username}" class="form-control" id="username">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-dark" style="margin-left: 80%;margin-top: 15px;">Zapisz</button>
+                    </div>
+                </form>
+            </div>
         </main>
     </div>
 </div>

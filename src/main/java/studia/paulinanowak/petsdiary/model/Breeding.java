@@ -20,7 +20,7 @@ public class Breeding extends BaseEntity {
     private String name;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "e-mail")
+    @Column(name = "email")
     private String email;
     @Column(name = "city")
     private String city;
