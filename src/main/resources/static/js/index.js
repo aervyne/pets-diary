@@ -6,7 +6,7 @@ function drawLineChartWithMeasurement(date, weight, height) {
             height: 500
         },
         title: {
-            text: '<b>Pomiary kontrolne</b>'
+            text: ''
         },
         xAxis: {
             categories: date,
@@ -16,7 +16,7 @@ function drawLineChartWithMeasurement(date, weight, height) {
         },
         yAxis: {
             title : {
-                text : 'Waga [kg] / Wzrost [cm]'
+                text : '<b>Waga [kg] / Wzrost [cm]</b>'
             }
         },
         series: [{

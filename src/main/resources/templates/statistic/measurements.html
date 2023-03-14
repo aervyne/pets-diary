@@ -23,17 +23,25 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
             </div>
 
-            <div><h5>Wybierz zwierzę: </h5>
-                <select class="custom-select" id="petSelect">
-                    <th:block th:each="pet : ${pets}">
-                        <option th:value="${pet.id}" th:text="${pet.name}"></option>
-                    </th:block>
-                </select>
+            <div class="row">
+                <div class="col-md-2">
+                    <h5>Wybierz zwierzę: </h5>
+                </div>
+                <div class="col-md-2">
+                    <select class="custom-select" id="petSelect">
+                        <th:block th:each="pet : ${pets}">
+                            <option th:value="${pet.id}" th:text="${pet.name}"></option>
+                        </th:block>
+                    </select>
+                </div>
             </div>
 
-            <div id="chart">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8" id="chart" style="margin-top: 35px;">
+                </div>
+                <div class="col-md-2"></div>
             </div>
-
         </main>
     </div>
 </div>
