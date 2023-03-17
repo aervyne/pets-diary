@@ -29,6 +29,7 @@
                 </div>
                 <div class="col-md-2">
                     <select class="custom-select" id="petSelect">
+                        <option value="" selected disabled hidden>Wybierz</option>
                         <th:block th:each="pet : ${pets}">
                             <option th:value="${pet.id}" th:text="${pet.name}"></option>
                         </th:block>
