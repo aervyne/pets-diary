@@ -27,4 +27,12 @@ public class TransactionController {
         model.addAttribute("view", 3);
         return "transactions/index";
     }
+
+    @GetMapping
+    @RequestMapping("/transactions/categories")
+    public String listCategories(Model model, Principal principal) {
+        model.addAttribute("categories", categoryService.findByUsername(principal.getName()));
+        model.addAttribute("view", 3);
+        return "transactions/categories/index";
+    }
 }

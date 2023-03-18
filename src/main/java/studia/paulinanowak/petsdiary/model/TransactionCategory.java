@@ -20,4 +20,6 @@ public class TransactionCategory extends BaseEntity {
     private String name;
     @Column(name = "category_type")
     private String categoryType;
+    @Column(name = "username")
+    private String username;
 }
