@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface TransactionService {
     List<Transaction> findByUsername(String username);
+    int countTransactionsByCategoryId(Long id);
 }
