@@ -6,6 +6,7 @@ import studia.paulinanowak.petsdiary.model.Transaction;
 import studia.paulinanowak.petsdiary.repositories.TransactionRepository;
 import studia.paulinanowak.petsdiary.services.TransactionService;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,16 +27,9 @@ public class TransactionSDJpaService implements TransactionService {
         return transactions.stream().sorted().toList();
     }
 
+    @Transactional
     @Override
-    public int countTransactionsByCategoryId(Long id) {
-        int numberOfTransaction = 0;
-
-        for (Transaction transaction : transactionRepository.findAll()) {
-            if(transaction.getCategory().getId() == id) {
-                numberOfTransaction += 1;
-            }
-        }
-
-        return numberOfTransaction;
+    public void deleteById(String username, Long id) {
+        transactionRepository.deleteTransactionByUsernameAndId(username, id);
     }
 }

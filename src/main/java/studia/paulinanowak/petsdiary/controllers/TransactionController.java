@@ -31,6 +31,20 @@ public class TransactionController {
     }
 
     @GetMapping
+    @RequestMapping("/transactions/delete/{id}")
+    public String deleteTransaction(@PathVariable String id, Principal principal){
+        transactionService.deleteById(principal.getName(), Long.valueOf(id));
+
+        return "redirect:/transactions";
+    }
+
+    @GetMapping
+    @RequestMapping("/transactions/new")
+    public String newTransaction(Model model) {
+
+    }
+
+    @GetMapping
     @RequestMapping("/transactions/categories")
     public String listCategories(@RequestParam("error") Optional<String> error, Model model, Principal principal) {
         model.addAttribute("categories", categoryService.findByUsername(principal.getName()));

@@ -53,8 +53,8 @@
                         <td th:text="${transaction.value}"></td>
                         <td th:text="${transaction.category.getName()}"></td>
                         <td th:text="${transaction.category.getCategoryType()}"></td>
-                        <td><a href="#" th:href="@{'/transaction/update/' + ${transaction.id}}">Edytuj</a>
-                            <a href="#" th:href="@{'/transaction/delete/' + ${transaction.id}}">Usuń</a></td>
+                        <td><a href="#" th:href="@{'/transactions/update/' + ${transaction.id}}">Edytuj</a>
+                            <a href="#" th:href="@{'/transactions/delete/' + ${transaction.id}}">Usuń</a></td>
                     </tr>
                     </tbody>
                 </table>

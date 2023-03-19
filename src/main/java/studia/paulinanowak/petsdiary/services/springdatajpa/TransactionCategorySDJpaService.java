@@ -9,6 +9,7 @@ import studia.paulinanowak.petsdiary.repositories.TransactionCategoryRepository;
 import studia.paulinanowak.petsdiary.repositories.TransactionRepository;
 import studia.paulinanowak.petsdiary.services.TransactionCategoryService;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -53,6 +54,7 @@ public class TransactionCategorySDJpaService implements TransactionCategoryServi
         return categoryOptional.get();
     }
 
+    @Transactional
     @Override
     public boolean deleteByUsernameAndId(String username, Long id) {
         List<Transaction> transactions = transactionRepository.findTransactionsByUsername(username);

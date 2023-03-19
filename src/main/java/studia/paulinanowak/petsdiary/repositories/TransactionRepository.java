@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
     List<Transaction> findTransactionsByUsername(String username);
-    List<Transaction> findTransactionsByUsernameAndAndCategory(String username, TransactionCategory category);
+    void deleteTransactionByUsernameAndId(String username, Long id);
 }
