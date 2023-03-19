@@ -40,7 +40,8 @@
                             <h5><label for="category">Kategoria</label></h5>
                             <select class="custom-select" name="category" id="category" th:field="*{categoryId}">
                                 <th:block th:each="category : ${categories}">
-                                    <option th:value="${category.id}" th:text="${category.name}"></option>
+                                    <option th:if="${category.id} == ${transaction.getCategoryId()}" th:value="${category.id}" th:text="${category.name}" selected></option>
+                                    <option th:unless="${category.id} == ${transaction.getCategoryId()}" th:value="${category.id}" th:text="${category.name}"></option>
                                 </th:block>
                             </select>
                         </div>

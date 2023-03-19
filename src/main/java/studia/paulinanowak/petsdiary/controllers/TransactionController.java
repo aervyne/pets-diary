@@ -48,6 +48,17 @@ public class TransactionController {
         return "transactions/form";
     }
 
+    @GetMapping
+    @RequestMapping("/transactions/update/{id}")
+    public String updateTransaction(@PathVariable String id, Principal principal, Model model) {
+        TransactionCommand transaction = transactionService.findCommandByUsernameAndId(principal.getName(), Long.valueOf(id));
+
+        model.addAttribute("transaction", transaction);
+        model.addAttribute("categories", categoryService.findByUsername(principal.getName()));
+        model.addAttribute("view", 3);
+        return "transactions/form";
+    }
+
     @PostMapping
     @RequestMapping("/transactions/save")
     public String saveOrUpdateTransaction(@Valid @ModelAttribute("transaction") TransactionCommand transactionCommand,
@@ -56,7 +67,7 @@ public class TransactionController {
         model.addAttribute("view", 3);
         transactionService.saveTransaction(transactionCommand, principal.getName());
 
-        return "redirect:/transactions/categories";
+        return "redirect:/transactions";
     }
 
     @GetMapping

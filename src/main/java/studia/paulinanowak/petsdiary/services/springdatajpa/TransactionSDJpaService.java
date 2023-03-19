@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import studia.paulinanowak.petsdiary.commands.TransactionCommand;
 import studia.paulinanowak.petsdiary.conventers.transactions.TransactionCommandToTransaction;
+import studia.paulinanowak.petsdiary.conventers.transactions.TransactionToTransactionCommand;
 import studia.paulinanowak.petsdiary.model.Transaction;
 import studia.paulinanowak.petsdiary.repositories.TransactionRepository;
 import studia.paulinanowak.petsdiary.services.TransactionService;
@@ -17,11 +18,14 @@ import java.util.List;
 public class TransactionSDJpaService implements TransactionService {
     private final TransactionRepository transactionRepository;
     private final TransactionCommandToTransaction transactionCommandToTransaction;
+    private final TransactionToTransactionCommand transactionToTransactionCommand;
 
     public TransactionSDJpaService(TransactionRepository transactionRepository,
-                                   TransactionCommandToTransaction transactionCommandToTransaction) {
+                                   TransactionCommandToTransaction transactionCommandToTransaction,
+                                   TransactionToTransactionCommand transactionToTransactionCommand) {
         this.transactionRepository = transactionRepository;
         this.transactionCommandToTransaction = transactionCommandToTransaction;
+        this.transactionToTransactionCommand = transactionToTransactionCommand;
     }
 
     @Override
@@ -42,5 +46,13 @@ public class TransactionSDJpaService implements TransactionService {
         Transaction detachedTransaction = transactionCommandToTransaction.convert(command);
         detachedTransaction.setUsername(username);
         transactionRepository.save(detachedTransaction);
+    }
+
+    @Override
+    public TransactionCommand findCommandByUsernameAndId(String username, Long id) {
+        Transaction transaction = transactionRepository.findByIdAndUsername(id, username).orElse(null);
+        TransactionCommand command = transactionToTransactionCommand.convert(transaction);
+
+        return command;
     }
 }
