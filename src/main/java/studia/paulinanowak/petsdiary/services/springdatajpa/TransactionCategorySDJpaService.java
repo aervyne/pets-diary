@@ -57,7 +57,7 @@ public class TransactionCategorySDJpaService implements TransactionCategoryServi
     @Transactional
     @Override
     public boolean deleteByUsernameAndId(String username, Long id) {
-        List<Transaction> transactions = transactionRepository.findTransactionsByUsername(username);
+        List<Transaction> transactions = transactionRepository.findTransactionsByUsernameOrderByDateDesc(username);
         TransactionCategory category = categoryRepository.findTransactionCategoryByUsernameAndId(username, id).orElse(null);
 
         for (Transaction transaction : transactions) {
@@ -69,5 +69,10 @@ public class TransactionCategorySDJpaService implements TransactionCategoryServi
         categoryRepository.deleteByUsernameAndId(username, id);
 
         return true;
+    }
+
+    @Override
+    public TransactionCategory findById(Long id) {
+        return categoryRepository.findById(id).orElse(null);
     }
 }

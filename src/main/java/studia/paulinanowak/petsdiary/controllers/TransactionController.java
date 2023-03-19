@@ -3,6 +3,7 @@ package studia.paulinanowak.petsdiary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import studia.paulinanowak.petsdiary.commands.TransactionCommand;
 import studia.paulinanowak.petsdiary.model.TransactionCategory;
 import studia.paulinanowak.petsdiary.services.TransactionCategoryService;
 import studia.paulinanowak.petsdiary.services.TransactionService;
@@ -40,8 +41,22 @@ public class TransactionController {
 
     @GetMapping
     @RequestMapping("/transactions/new")
-    public String newTransaction(Model model) {
+    public String newTransaction(Model model, Principal principal) {
+        model.addAttribute("transaction", new TransactionCommand());
+        model.addAttribute("categories", categoryService.findByUsername(principal.getName()));
+        model.addAttribute("view", 3);
+        return "transactions/form";
+    }
 
+    @PostMapping
+    @RequestMapping("/transactions/save")
+    public String saveOrUpdateTransaction(@Valid @ModelAttribute("transaction") TransactionCommand transactionCommand,
+                                          Principal principal,
+                                          Model model) {
+        model.addAttribute("view", 3);
+        transactionService.saveTransaction(transactionCommand, principal.getName());
+
+        return "redirect:/transactions/categories";
     }
 
     @GetMapping
