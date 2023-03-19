@@ -3,7 +3,6 @@ package studia.paulinanowak.petsdiary.services.springdatajpa;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import studia.paulinanowak.petsdiary.errors.NotFoundException;
-import studia.paulinanowak.petsdiary.model.Pet;
 import studia.paulinanowak.petsdiary.model.Transaction;
 import studia.paulinanowak.petsdiary.model.TransactionCategory;
 import studia.paulinanowak.petsdiary.repositories.TransactionCategoryRepository;
@@ -11,7 +10,6 @@ import studia.paulinanowak.petsdiary.repositories.TransactionRepository;
 import studia.paulinanowak.petsdiary.services.TransactionCategoryService;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +54,18 @@ public class TransactionCategorySDJpaService implements TransactionCategoryServi
     }
 
     @Override
-    public void deleteByUsernameAndId(String username, Long id) {
+    public boolean deleteByUsernameAndId(String username, Long id) {
+        List<Transaction> transactions = transactionRepository.findTransactionsByUsername(username);
+        TransactionCategory category = categoryRepository.findTransactionCategoryByUsernameAndId(username, id).orElse(null);
+
+        for (Transaction transaction : transactions) {
+            if (transaction.getCategory().getId() == category.getId()) {
+                return false;
+            }
+        }
+
         categoryRepository.deleteByUsernameAndId(username, id);
+
+        return true;
     }
 }

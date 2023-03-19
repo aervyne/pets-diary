@@ -27,6 +27,9 @@
             </div>
 
             <div>
+                <b><large class="form-text" style="color: red; margin-bottom: 20px; text-align: center" th:if="${error} == 'delete'">
+                    Nie można usunąć wpisu, kategoria jest powiązana z dodanymi transakcjami.
+                </large></b>
                 <table class="table">
                     <caption>Kategorie</caption>
                     <thead>
@@ -41,7 +44,7 @@
                         <td th:text="${category.name}"></td>
                         <td th:text="${category.categoryType}"></td>
                         <td><a href="#" th:href="@{'/transactions/category/update/' + ${category.id}}">Edytuj</a>
-                            <a href="#" th:href="@{'/transactions/category/delete/' + ${category.id}}">Usuń</a></td>
+                            <a href="#" th:href="@{'/transactions/category/delete/' + ${category.id}}">Usuń</a>
                     </tr>
                     </tbody>
                 </table>

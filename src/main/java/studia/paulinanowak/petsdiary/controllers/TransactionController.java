@@ -9,6 +9,7 @@ import studia.paulinanowak.petsdiary.services.TransactionService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 public class TransactionController {
@@ -31,10 +32,10 @@ public class TransactionController {
 
     @GetMapping
     @RequestMapping("/transactions/categories")
-    public String listCategories(Model model, Principal principal) {
+    public String listCategories(@RequestParam("error") Optional<String> error, Model model, Principal principal) {
         model.addAttribute("categories", categoryService.findByUsername(principal.getName()));
+        model.addAttribute("error", error.orElse(null));
         model.addAttribute("view", 3);
-        System.out.println(categoryService.findByUsername(principal.getName()).stream().toList().size());
         return "transactions/categories/index";
     }
 
@@ -64,5 +65,17 @@ public class TransactionController {
         model.addAttribute("category", category);
         model.addAttribute("view", 3);
         return "transactions/categories/form";
+    }
+
+    @GetMapping
+    @RequestMapping("/transactions/category/delete/{id}")
+    public String deleteCategory(@PathVariable String id, Principal principal){
+        boolean deleteCategory = categoryService.deleteByUsernameAndId(principal.getName(), Long.valueOf(id));
+
+        if (!deleteCategory) {
+            return "redirect:/transactions/categories?error=delete";
+        }
+
+        return "redirect:/transactions/categories";
     }
 }

@@ -8,5 +8,5 @@ public interface TransactionCategoryService {
     List<TransactionCategory> findByUsername(String username);
     void saveCategory(TransactionCategory transactionCategory, String username);
     TransactionCategory findByUsernameAndId(String username, Long id);
-    void deleteByUsernameAndId(String username, Long id);
+    boolean deleteByUsernameAndId(String username, Long id);
 }
