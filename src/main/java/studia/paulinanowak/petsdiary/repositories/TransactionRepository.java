@@ -12,6 +12,10 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
     void deleteTransactionByUsernameAndId(String username, Long id);
     Optional<Transaction> findByIdAndUsername(Long id, String username);
 
-    @Query("SELECT c.name, SUM(t.value) FROM Transaction t INNER JOIN TransactionCategory c ON t.category.id = c.id GROUP BY c.name")
-    List<Object> findByIdarea();
+    @Query("SELECT c.name, SUM(t.value) " +
+            "FROM Transaction t " +
+            "INNER JOIN TransactionCategory c ON t.category.id = c.id " +
+            "WHERE c.categoryType = :#{#type} AND t.username = :#{#username} " +
+            "GROUP BY c.name")
+    List<Object> findTransactionsByCategoryType(String type, String username);
 }

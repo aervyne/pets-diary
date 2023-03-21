@@ -35,7 +35,9 @@ public class AjaxController {
 
     @GetMapping("/expenses")
     List<Object> exp(Principal principal) {
-        List<Object> map = transactionRepository.findByIdarea().stream().toList();
+        List<Object> map = transactionRepository.findTransactionsByCategoryType("Wydatek", principal.getName())
+                .stream()
+                .toList();
         return map;
     }
 }
