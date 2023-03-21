@@ -1,5 +1,5 @@
 function drawLineChartWithMeasurement(date, weight, height) {
-    Highcharts.chart("chart", {
+    Highcharts.chart("chartMeasurement", {
         chart: {
             type: 'line',
             width: 800,

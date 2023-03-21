@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import studia.paulinanowak.petsdiary.model.ControlMeasurement;
+import studia.paulinanowak.petsdiary.repositories.TransactionRepository;
 import studia.paulinanowak.petsdiary.services.ControlMeasurementService;
 import studia.paulinanowak.petsdiary.services.PetService;
 
@@ -14,10 +15,13 @@ import java.util.*;
 public class AjaxController {
     private final ControlMeasurementService controlMeasurementService;
     private final PetService petService;
+    private final TransactionRepository transactionRepository;
 
-    public AjaxController(ControlMeasurementService controlMeasurementService, PetService petService) {
+    public AjaxController(ControlMeasurementService controlMeasurementService, PetService petService,
+                          TransactionRepository transactionRepository) {
         this.controlMeasurementService = controlMeasurementService;
         this.petService = petService;
+        this.transactionRepository = transactionRepository;
     }
 
     @GetMapping("/controlmeasurements/{id}")
@@ -29,5 +33,9 @@ public class AjaxController {
         return controlMeasurements;
     }
 
-
+    @GetMapping("/expenses")
+    List<Object> exp(Principal principal) {
+        List<Object> map = transactionRepository.findByIdarea().stream().toList();
+        return map;
+    }
 }

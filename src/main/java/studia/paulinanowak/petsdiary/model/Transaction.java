@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "transaction")
+@Table(name = "transactions")
 public class Transaction extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "category_id")

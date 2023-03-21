@@ -118,4 +118,10 @@ public class TransactionController {
 
         return "redirect:/transactions/categories";
     }
+
+    @GetMapping
+    @RequestMapping("/transactions/statistic")
+    public String statistic(){
+        return "transactions/statistic";
+    }
 }
