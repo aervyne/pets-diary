@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-9">
                         <button class="btn btn-dark btn-lg" onclick="expenses()" id="expenses" role="button">Wydatki</button>
-                        <button class="btn btn-dark btn-lg" role="button">Przychody</button>
+                        <button class="btn btn-dark btn-lg" onclick="incomes()" role="button">Przychody</button>
                         <button class="btn btn-dark btn-lg" role="button">Zestawienie transakcji</button>
                     </div>
                     <div class="col-md-3">
@@ -49,6 +49,7 @@
 </div>
 <script language="javascript" type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript" th:src="@{/js/statistic_expenses.js}"></script>
+<script type="text/javascript" th:src="@{/js/statistic_incomes.js}"></script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src=https://code.jquery.com/jquery-3.6.0.js></script>

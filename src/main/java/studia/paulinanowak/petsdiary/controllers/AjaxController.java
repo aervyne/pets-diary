@@ -34,8 +34,16 @@ public class AjaxController {
     }
 
     @GetMapping("/expenses")
-    List<Object> exp(Principal principal) {
+    List<Object> expenses(Principal principal) {
         List<Object> map = transactionRepository.findTransactionsByCategoryType("Wydatek", principal.getName())
+                .stream()
+                .toList();
+        return map;
+    }
+
+    @GetMapping("/incomes")
+    List<Object> incomes(Principal principal) {
+        List<Object> map = transactionRepository.findTransactionsByCategoryType("Przychód", principal.getName())
                 .stream()
                 .toList();
         return map;
