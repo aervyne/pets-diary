@@ -3,13 +3,20 @@ package studia.paulinanowak.petsdiary.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 import studia.paulinanowak.petsdiary.commands.TransactionCommand;
+import studia.paulinanowak.petsdiary.model.Transaction;
 import studia.paulinanowak.petsdiary.model.TransactionCategory;
 import studia.paulinanowak.petsdiary.services.TransactionCategoryService;
 import studia.paulinanowak.petsdiary.services.TransactionService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -123,5 +130,29 @@ public class TransactionController {
     @RequestMapping("/transactions/statistic")
     public String statistic(){
         return "transactions/statistic";
+    }
+
+    @GetMapping("/users/export")
+    public void exportToCSV(HttpServletResponse response, Principal principal) throws IOException {
+        response.setContentType("text/csv");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; transactions.csv";
+        response.setHeader(headerKey, headerValue);
+
+        List<Transaction> transactionList = transactionService.findByUsername(principal.getName());
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"User ID", "E-mail", "Full Name", "Roles", "Enabled"};
+        String[] nameMapping = {"id", "category", "value", "date", "note"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Transaction user : transactionList) {
+            csvWriter.write(user, nameMapping);
+        }
+
+        csvWriter.close();
+
     }
 }

@@ -1,9 +1,6 @@
 package studia.paulinanowak.petsdiary.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,4 +19,9 @@ public class TransactionCategory extends BaseEntity {
     private String categoryType;
     @Column(name = "username")
     private String username;
+
+    @Override
+    public String toString() {
+        return name + " (" + categoryType + ")";
+    }
 }
