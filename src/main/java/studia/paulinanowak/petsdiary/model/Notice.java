@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "announcements")
-public class Announcement extends BaseEntity {
+public class Notice extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pet_id", referencedColumnName = "id")
     private Pet pet;
